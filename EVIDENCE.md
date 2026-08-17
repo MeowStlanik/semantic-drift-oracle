@@ -2,10 +2,10 @@
 
 
 - Repository: `https://github.com/MeowStlanik/semantic-drift-oracle`
-- Immutable source: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/f4096bafb31c1180b1f9cd17c2b63c15e663c10e/contracts/semantic_drift_oracle.py`
-- Tests: `https://github.com/MeowStlanik/semantic-drift-oracle/tree/f4096bafb31c1180b1f9cd17c2b63c15e663c10e/tests`
-- Consensus design: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/f4096bafb31c1180b1f9cd17c2b63c15e663c10e/docs/CONSENSUS.md`
-- Security analysis: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/f4096bafb31c1180b1f9cd17c2b63c15e663c10e/docs/SECURITY.md`
+- Immutable source: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/contracts/semantic_drift_oracle.py`
+- Tests: `https://github.com/MeowStlanik/semantic-drift-oracle/tree/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/tests`
+- Consensus design: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/docs/CONSENSUS.md`
+- Security analysis: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/docs/SECURITY.md`
 - Contract address: `0xF7F2269078bd2aAa726CAF78050EF4C980F5Cabb`
 - Deployment transaction: `0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b`
 - Explorer transaction: `https://explorer-bradbury.genlayer.com/tx/0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b`
