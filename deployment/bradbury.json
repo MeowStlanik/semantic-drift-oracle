@@ -1,0 +1,16 @@
+﻿{
+    "deploymentTransaction":  "0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b",
+    "verifiedTwice":  true,
+    "contractUrl":  "https://explorer-bradbury.genlayer.com/address/0xF7F2269078bd2aAa726CAF78050EF4C980F5Cabb",
+    "contractAddress":  "0xF7F2269078bd2aAa726CAF78050EF4C980F5Cabb",
+    "version":  "1.0.0",
+    "postDeployChecks":  [
+                             "schema",
+                             "get_stats"
+                         ],
+    "rpc":  "https://rpc-bradbury.genlayer.com",
+    "sourceSha256":  "61e8524cd813535800fc195d63b537e5ca693da0b20323c60d1a2b1807f1fd54",
+    "network":  "Bradbury",
+    "deploymentUrl":  "https://explorer-bradbury.genlayer.com/tx/0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b",
+    "deployedAtUtc":  "2026-08-17T02:57:12.8237476Z"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "withdrawal_fee",
+    "question": "What is the maximum withdrawal fee?",
+    "anchor_expected": ""
+  },
+  {
+    "id": "data_retention",
+    "question": "How long may user data be retained after account closure?",
+    "anchor_expected": ""
+  },
+  {
+    "id": "webhook_v2",
+    "question": "Does the API documentation state that webhook v2 is supported?",
+    "anchor_expected": ""
+  },
+  {
+    "id": "document_title",
+    "question": "What is the title of this document?",
+    "anchor_expected": "Partner Platform Terms"
+  }
+]
