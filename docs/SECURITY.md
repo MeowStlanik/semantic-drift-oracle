@@ -11,7 +11,7 @@
 | Wrong/redirected page | 1–3 mandatory known anchors |
 | Format-only consensus | Validator derives independent evidence before comparison |
 | Materiality ambiguity | Explicit rubric and exact validator agreement on labels |
-| Refresh spam | Per-URL interval for all callers, bounded clauses/page/context |
+| Refresh spam | Per-subscription interval for all callers, bounded clauses/page/context |
 | State bloat | No raw pages; 12 clauses; bounded fields and immutable compact snapshots |
 | Nondeterministic storage writes | All writes occur after consensus |
 
@@ -34,6 +34,12 @@ reduce prompt-injection risk but do not eliminate model-level attacks. High-valu
 consumers should use stable, narrowly scoped sources and multiple subscriptions.
 
 ## Refresh economics
+
+Refresh cadence is enforced independently per subscription. This avoids a shared
+URL timestamp becoming a cross-subscription denial-of-service primitive: a fast
+watch cannot reset the clock used by a slower watch. The tradeoff is that this is
+not a global per-origin anti-Sybil throttle; multiple separately registered
+subscriptions can still produce independent refresh work.
 
 The core is intentionally non-custodial. Native-token slashing would require
 custody, a burn/sink policy, and asynchronous outbound messages whose failure

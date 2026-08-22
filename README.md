@@ -25,8 +25,8 @@ normalized answer per watched clause and classifies later observations as:
 1. An owner calls `watch(subscription_id, url, clauses_json,
    min_refresh_seconds)`. Each subscription must include one to three anchor
    clauses with an expected stable answer.
-2. Anyone may call `refresh(subscription_id)`. A deterministic per-URL interval
-   rate-limits owners and third parties alike.
+2. Anyone may call `refresh(subscription_id)`. Each subscription enforces its
+   own deterministic refresh interval for owners and third parties alike.
 3. Validators independently fetch and extract the same facts. Structural gates,
    confidence thresholds, anchor calibration, and a semantic comparison all
    have to pass.
@@ -155,7 +155,10 @@ GenLayer's current CLI supports direct contract deployment and Bradbury at
 `https://rpc-bradbury.genlayer.com`: [CLI deployment](https://docs.genlayer.com/developers/intelligent-contracts/deploying/cli-deployment),
 [network reference](https://docs.genlayer.com/developers/networks).
 
-The verified Bradbury deployment and source hash are recorded in EVIDENCE.md. No private key or deployment credential belongs in this repository.
+Deployment evidence is recorded in EVIDENCE.md. After any source change, the
+contract must be redeployed and the recorded source hash/address updated before
+resubmission; an older address must not be presented as matching the new source.
+No private key or deployment credential belongs in this repository.
 
 ## Design boundaries
 
@@ -165,9 +168,10 @@ The verified Bradbury deployment and source hash are recorded in EVIDENCE.md. No
   limiting, and anchors rather than a native-token refresh bond. Keeping value
   transfer out of the primitive avoids custody and asynchronous refund failure
   modes; a bounty/bond adapter can compose above it.
-- Rate limiting is tracked per URL, not only per subscription. Consumers should
-  still trust the subscription configuration they choose, not merely any
-  subscription pointing at a URL.
+- Refresh cadence is tracked per subscription via `last_refresh_at`; one watch
+  cannot postpone another watch of the same URL by choosing a different
+  interval. Consumers should still trust the subscription configuration they
+  choose.
 - The 60,000-character page budget and 12-clause limit bound LLM context and
   on-chain growth. Split large documents into multiple subscriptions.
 

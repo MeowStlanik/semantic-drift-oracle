@@ -90,14 +90,33 @@ def test_public_refresh_is_rate_limited(
         contract.refresh("partner_terms")
 
 
-def test_refresh_interval_is_shared_by_url(direct_vm, direct_deploy, direct_alice):
+def test_same_url_subscriptions_enforce_their_own_cadence(
+    direct_vm, direct_deploy, direct_alice
+):
     contract = deploy_watch(direct_vm, direct_deploy, direct_alice)
-    register_mocks(direct_vm, extraction())
+    contract.watch("fast_watch", URL, clauses_json(), 300)
+    register_mocks(direct_vm, extraction(), drift("UNCHANGED"))
+
+    # Baseline the 3600-second subscription first.
     contract.refresh("partner_terms")
 
-    contract.watch("same_url_second_watch", URL, clauses_json(), 3600)
+    # A faster subscription for the same URL refreshes twice in the meantime.
+    direct_vm.warp("2026-01-01T00:05:01Z")
+    contract.refresh("fast_watch")
+    direct_vm.warp("2026-01-01T00:10:02Z")
+    contract.refresh("fast_watch")
+
+    # The fast subscription is still limited by its own 300-second cadence.
     with direct_vm.expect_revert("refresh interval has not elapsed"):
-        contract.refresh("same_url_second_watch")
+        contract.refresh("fast_watch")
+
+    # The fast watch must not postpone the 3600-second watch. Under the old
+    # global url_last_refresh logic this call was blocked until 01:10:02.
+    direct_vm.warp("2026-01-01T01:00:01Z")
+    contract.refresh("partner_terms")
+
+    assert contract.get_subscription("fast_watch")["latest_snapshot"] == 2
+    assert contract.get_subscription("partner_terms")["latest_snapshot"] == 2
 
 
 def test_inactive_subscription_cannot_refresh(direct_vm, direct_deploy, direct_alice):

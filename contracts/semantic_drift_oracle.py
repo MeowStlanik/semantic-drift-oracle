@@ -55,7 +55,6 @@ class SemanticDriftOracle(gl.Contract):
     subscriptions: TreeMap[str, Subscription]
     clauses: TreeMap[str, ClauseState]
     snapshots: TreeMap[str, str]
-    url_last_refresh: TreeMap[str, u256]
     subscription_count: u256
 
     def __init__(self):
@@ -378,8 +377,11 @@ Return only JSON:
             raise gl.vm.UserError("subscription is inactive")
 
         now = self._now()
-        url_last_refresh = int(self.url_last_refresh.get(subscription.url, u256(0)))
-        if url_last_refresh > 0 and now < url_last_refresh + int(subscription.min_refresh_seconds):
+        last_refresh_at = int(subscription.last_refresh_at)
+        if (
+            last_refresh_at > 0
+            and now < last_refresh_at + int(subscription.min_refresh_seconds)
+        ):
             raise gl.vm.UserError("refresh interval has not elapsed")
 
         definitions = json.loads(subscription.clauses_json)
@@ -453,7 +455,6 @@ Return only JSON:
 
         subscription.latest_snapshot = u256(snapshot_number)
         subscription.last_refresh_at = u256(now)
-        self.url_last_refresh[subscription.url] = u256(now)
         subscription.material_count = u256(
             int(subscription.material_count) + snapshot_material
         )

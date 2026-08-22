@@ -24,7 +24,8 @@ Clause object:
 ### `refresh(subscription_id)`
 
 Permissionless. Executes extraction consensus and, after the baseline, drift
-consensus. The configured interval applies per URL to owners and third parties.
+consensus. The configured interval is enforced independently per subscription
+using that subscription's `last_refresh_at`, for owners and third parties alike.
 
 ### `set_active(subscription_id, active)`
 

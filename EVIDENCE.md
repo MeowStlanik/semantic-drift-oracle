@@ -1,23 +1,26 @@
 # Release evidence
 
+## Semantic Drift Oracle 1.0.1
 
 - Repository: `https://github.com/MeowStlanik/semantic-drift-oracle`
-- Immutable source: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/contracts/semantic_drift_oracle.py`
-- Tests: `https://github.com/MeowStlanik/semantic-drift-oracle/tree/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/tests`
-- Consensus design: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/docs/CONSENSUS.md`
-- Security analysis: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/7436227dea6b0bc49e4eefb6b87f2ca441cc2e5c/docs/SECURITY.md`
-- Contract address: `0xF7F2269078bd2aAa726CAF78050EF4C980F5Cabb`
-- Deployment transaction: `0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b`
-- Explorer transaction: `https://explorer-bradbury.genlayer.com/tx/0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b`
-- Explorer contract: `https://explorer-bradbury.genlayer.com/address/0xF7F2269078bd2aAa726CAF78050EF4C980F5Cabb`
-- Source SHA-256: `61e8524cd813535800fc195d63b537e5ca693da0b20323c60d1a2b1807f1fd54`
+- Immutable source: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/main/contracts/semantic_drift_oracle.py`
+- Direct tests: `https://github.com/MeowStlanik/semantic-drift-oracle/tree/main/tests/direct`
+- Consensus design: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/main/docs/CONSENSUS.md`
+- Security analysis: `https://github.com/MeowStlanik/semantic-drift-oracle/blob/main/docs/SECURITY.md`
+- Contract address: `0xA1993e6357C6242c051cd96d6Bd8d63Ed488b557`
+- Deployment transaction: `0x80d7798862dec85a146ef83ebce92c8d87941d9d43a3d3fccefa6987b2308faa`
+- Explorer transaction: `https://explorer-bradbury.genlayer.com/tx/0x80d7798862dec85a146ef83ebce92c8d87941d9d43a3d3fccefa6987b2308faa`
+- Explorer contract: `https://explorer-bradbury.genlayer.com/address/0xA1993e6357C6242c051cd96d6Bd8d63Ed488b557`
+- Source SHA-256: `9eb1fc151f4d16272612b9d5cc32383268baf92dd319b85bc7552972263c2e4c`
+- Deployment/source match: **verified twice from Bradbury on-chain contract code**.
 
-Local verification required by the release script:
+## Steward cadence fix
 
-1. Python syntax compilation.
-2. GenVM lint and SDK validation.
-3. Full direct-mode test suite, including validator agreement/disagreement and
-   pickling checks.
-4. The same lint and test suite a second time in a fresh process.
-5. Bradbury deployment compilation/consensus.
-6. Post-deployment schema fetch and `get_stats()` view call.
+`refresh(subscription_id)` enforces cadence from that subscription's own
+`last_refresh_at` and `min_refresh_seconds`. There is no shared URL timestamp
+whose reset can postpone another subscription watching the same URL.
+
+The release gate runs the direct verification twice before deployment and then
+fetches the deployed contract code from Bradbury twice. Both on-chain SHA-256
+checks must equal the local contract SHA-256 before GitHub publication is
+allowed.

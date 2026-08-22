@@ -1,16 +1,20 @@
-﻿{
-    "deploymentTransaction":  "0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b",
-    "verifiedTwice":  true,
-    "contractUrl":  "https://explorer-bradbury.genlayer.com/address/0xF7F2269078bd2aAa726CAF78050EF4C980F5Cabb",
-    "contractAddress":  "0xF7F2269078bd2aAa726CAF78050EF4C980F5Cabb",
-    "version":  "1.0.0",
-    "postDeployChecks":  [
-                             "schema",
-                             "get_stats"
-                         ],
-    "rpc":  "https://rpc-bradbury.genlayer.com",
-    "sourceSha256":  "61e8524cd813535800fc195d63b537e5ca693da0b20323c60d1a2b1807f1fd54",
-    "network":  "Bradbury",
-    "deploymentUrl":  "https://explorer-bradbury.genlayer.com/tx/0x5c91a220a6a01b418c8c24eb3950150c9f39e7e0e74b9e3eb06550c8d69a358b",
-    "deployedAtUtc":  "2026-08-17T02:57:12.8237476Z"
+{
+  "network": "Bradbury",
+  "rpc": "https://rpc-bradbury.genlayer.com",
+  "version": "1.0.1",
+  "contractAddress": "0xA1993e6357C6242c051cd96d6Bd8d63Ed488b557",
+  "deploymentTransaction": "0x80d7798862dec85a146ef83ebce92c8d87941d9d43a3d3fccefa6987b2308faa",
+  "deploymentUrl": "https://explorer-bradbury.genlayer.com/tx/0x80d7798862dec85a146ef83ebce92c8d87941d9d43a3d3fccefa6987b2308faa",
+  "contractUrl": "https://explorer-bradbury.genlayer.com/address/0xA1993e6357C6242c051cd96d6Bd8d63Ed488b557",
+  "sourceSha256": "9eb1fc151f4d16272612b9d5cc32383268baf92dd319b85bc7552972263c2e4c",
+  "sourceCommit": "",
+  "sourceUrl": "",
+  "deployedAtUtc": "2026-08-22T01:50:41.852937+00:00",
+  "status": "verified",
+  "matchesCurrentSource": true,
+  "verifiedTwice": true,
+  "postDeployChecks": [
+    "onchain_code_sha256_pass_1",
+    "onchain_code_sha256_pass_2"
+  ]
 }

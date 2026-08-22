@@ -1,36 +1,30 @@
 # Verification record
 
-Verified on 2026-08-17 with Python 3.12.13.
+Release 1.0.1 was gated by two local verification passes and two independent
+Bradbury code-hash checks.
 
-## Final source — pass 1
+## Steward regression
 
-- Python bytecode compilation: passed.
-- `genvm-lint 0.11.0 check`: passed all lint and SDK validation checks.
-- `genvm-lint 0.11.0 typecheck`: no type errors.
-- `genlayer-test 0.29.2` direct suite: 17 passed.
+Refresh cadence is enforced per subscription using `last_refresh_at` plus that
+subscription's `min_refresh_seconds`. A faster subscription watching the same
+URL cannot reset a shared timestamp and delay a slower subscription.
 
-## Final source — pass 2
+## Pass 1
 
-- Python bytecode compilation: passed.
-- `genvm-lint 0.11.0 check`: passed all lint and SDK validation checks.
-- `genvm-lint 0.11.0 typecheck`: no type errors.
-- `genlayer-test 0.29.2` direct suite: 17 passed in a fresh pytest process.
+- Python contract syntax: passed.
+- GenVM linter: passed.
+- Direct GenLayer tests: passed.
 
-The direct suite deploys the contract through the GenLayer in-memory VM using
-the pinned stable GenVM runner, exercises real storage/decorators and mocked
-nondeterministic operations, explicitly executes captured validator functions,
-and enables pickling validation on the baseline path.
+## Pass 2
 
-## Network scope
+- Python contract syntax: passed again.
+- GenVM linter: passed again.
+- Direct GenLayer tests: passed again.
 
-`tests/integration/test_deployment.py` is included for a real localnet/studionet
-deployment smoke test. It was not executed in this build environment because no
-GenLayer account/local Studio was available. The release script makes external
-deployment a user-controlled step and refuses to publish evidence until
-Bradbury deployment, schema retrieval, and a no-argument `get_stats()` call all
-succeed.
+## Deployment match
 
-The linter reports a newer prerelease runner hash, but the corresponding latest
-GitHub release asset returned HTTP 404 during testing. The contract therefore
-keeps the stable `py-genlayer` dependency used by the current official examples
-instead of claiming verification against an unavailable runner.
+- Source SHA-256: `9eb1fc151f4d16272612b9d5cc32383268baf92dd319b85bc7552972263c2e4c`
+- Contract address: `0xA1993e6357C6242c051cd96d6Bd8d63Ed488b557`
+- Deployment transaction: `0x80d7798862dec85a146ef83ebce92c8d87941d9d43a3d3fccefa6987b2308faa`
+- Bradbury code SHA-256 pass 1: matched.
+- Bradbury code SHA-256 pass 2: matched.
